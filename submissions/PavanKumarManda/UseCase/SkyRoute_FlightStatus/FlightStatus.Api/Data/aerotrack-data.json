@@ -1,0 +1,54 @@
+[
+  {
+    "FlightNumber": "SR200",
+    "FlightDate": "2026-06-20",
+    "ProviderStatus": "LATE",
+    "ScheduledDepartureTime": "2026-06-20T09:00:00Z",
+    "ScheduledArrivalTime": "2026-06-20T11:00:00Z",
+    "ActualDepartureTime": "2026-06-20T09:25:00Z",
+    "ActualArrivalTime": null,
+    "Terminal": "B",
+    "Gate": "21",
+    "DelayReason": "Weather",
+    "LastUpdatedTimestamp": "2026-06-20T09:30:00Z"
+  },
+  {
+    "FlightNumber": "SR300",
+    "FlightDate": "2026-06-20",
+    "ProviderStatus": "ON_TIME",
+    "ScheduledDepartureTime": "2026-06-20T07:00:00Z",
+    "ScheduledArrivalTime": "2026-06-20T09:00:00Z",
+    "ActualDepartureTime": "2026-06-20T07:05:00Z",
+    "ActualArrivalTime": "2026-06-20T09:02:00Z",
+    "Terminal": "A",
+    "Gate": "5",
+    "DelayReason": null,
+    "LastUpdatedTimestamp": "2026-06-20T08:00:00Z"
+  },
+  {
+    "FlightNumber": "SR400",
+    "FlightDate": "2026-06-21",
+    "ProviderStatus": "CANCELLED",
+    "ScheduledDepartureTime": "2026-06-21T13:00:00Z",
+    "ScheduledArrivalTime": "2026-06-21T15:30:00Z",
+    "ActualDepartureTime": null,
+    "ActualArrivalTime": null,
+    "Terminal": null,
+    "Gate": null,
+    "DelayReason": "Technical issue",
+    "LastUpdatedTimestamp": "2026-06-21T10:45:00Z"
+  },
+  {
+    "FlightNumber": "SR700",
+    "FlightDate": "2026-06-22",
+    "ProviderStatus": "DIVERTED",
+    "ScheduledDepartureTime": "2026-06-22T16:00:00Z",
+    "ScheduledArrivalTime": "2026-06-22T18:00:00Z",
+    "ActualDepartureTime": "2026-06-22T16:05:00Z",
+    "ActualArrivalTime": null,
+    "Terminal": "C",
+    "Gate": "9",
+    "DelayReason": "Airspace congestion",
+    "LastUpdatedTimestamp": "2026-06-22T16:30:00Z"
+  }
+]

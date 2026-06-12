@@ -1,0 +1,109 @@
+<header class="app-header">
+  <div class="header-title">SkyRoute</div>
+</header>
+
+<div class="container">
+  <mat-card class="search-card">
+    <mat-card-title style="padding-left: 12px;">Flight Status Search</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="flightForm" (ngSubmit)="onSearch()">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Flight Number</mat-label>
+          <input matInput formControlName="flightNumber" placeholder="e.g., SR200">
+          <mat-icon matSuffix>flight</mat-icon>
+          <mat-error *ngIf="flightForm.get('flightNumber')?.hasError('required')">
+            Flight number is required
+          </mat-error>
+          <mat-error *ngIf="flightForm.get('flightNumber')?.hasError('minlength')">
+            Flight number must be at least 2 characters
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Flight Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="flightDate" placeholder="Select date" [min]="minDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="flightForm.get('flightDate')?.hasError('required')">
+            Date is required
+          </mat-error>
+        </mat-form-field>
+
+        <div class="button-group">
+          <button mat-raised-button color="primary" type="submit">Search</button>
+          <button mat-stroked-button type="button" (click)="resetForm()">Reset</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="error-card" *ngIf="showError">
+    <div class="error-content">
+      <mat-icon class="error-icon">error</mat-icon>
+      <div class="error-message">{{ errorMessage }}</div>
+      <button mat-icon-button (click)="showError = false">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-card>
+
+  <div *ngIf="showResults && flightResults.length > 0" class="results-section">
+    <mat-card class="results-card">
+      <mat-card-title style="padding-left: 15px;">Search Results</mat-card-title>
+      <mat-card-content>
+        <div class="cards-container">
+          <mat-card class="flight-result-card" *ngFor="let flight of flightResults" [ngClass]="getStatusClass(flight.status)">
+            <div class="flight-header">
+              <div>
+                <div class="flight-number">{{ flight.flightNumber }}</div>
+                <div class="flight-message">{{ flight.message || '-' }}</div>
+              </div>
+              <div class="status-pill">{{ flight.status }}</div>
+            </div>
+
+            <div class="flight-times">
+              <div>
+                <div class="field-label">Sched. Departure</div>
+                <div>{{ formatDate(flight.scheduledDepartureTime) }}</div>
+              </div>
+              <div>
+                <div class="field-label">Sched. Arrival</div>
+                <div>{{ formatDate(flight.scheduledArrivalTime) }}</div>
+              </div>
+            </div>
+
+            <div class="flight-times secondary-row">
+              <div>
+                <div class="field-label">Actual Departure</div>
+                <div>{{ formatDate(flight.actualDepartureTime) }}</div>
+              </div>
+              <div>
+                <div class="field-label">Actual Arrival</div>
+                <div>{{ formatDate(flight.actualArrivalTime) }}</div>
+              </div>
+            </div>
+
+            <div class="aerotrack-fields" *ngIf="flight.terminal || flight.gate || flight.delayReason">
+              <div *ngIf="flight.terminal">
+                <span class="field-label">Terminal</span>
+                <span>{{ flight.terminal }}</span>
+              </div>
+              <div *ngIf="flight.gate">
+                <span class="field-label">Gate</span>
+                <span>{{ flight.gate }}</span>
+              </div>
+              <div *ngIf="flight.delayReason">
+                <span class="field-label">Delay Reason</span>
+                <span>{{ flight.delayReason }}</span>
+              </div>
+            </div>
+
+            <div class="meta-row">
+              <span>Last updated: {{ formatDate(flight.lastUpdatedTimestamp) }}</span>
+            </div>
+          </mat-card>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
