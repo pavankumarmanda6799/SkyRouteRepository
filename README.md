@@ -6,9 +6,12 @@ Angular CLI
 
 Project Structure
 -----------------
-FlightStatus.Api
-FlightStatus.UI
+flight-status-ui (frontend)
 
+SkyRoute_FlightStatus (backend)
+  - FlightStatus.Api
+  - FlightStatus.Tests
+    
 Running Application
 -------------------
 Backend:
