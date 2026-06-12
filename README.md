@@ -1,7 +1,7 @@
 Prerequisites
 --------------
 .NET 8 SDK
-Node.js 22+
+Node.js
 Angular CLI
 
 Project Structure
